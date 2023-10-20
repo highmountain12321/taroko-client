@@ -9,7 +9,7 @@ export default async function Page({params}: {params: {id: string}}){
     console.log("id is : ", id)
     const contact = await getContactById(Number(id))
     return (
-        <div>
+        <div className="w-full h-full">
             <h1>Contact List App</h1>
             <ContactForm contact={contact.data.data} isEditing={true} />
         </div>

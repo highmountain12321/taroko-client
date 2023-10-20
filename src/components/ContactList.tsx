@@ -23,20 +23,22 @@ const ContactList: React.FC = () => {
     };
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* Existing Contact List */}
-            <div className="bg-white p-4 rounded shadow">
+        <div className="bg-white p-4 rounded shadow">
+            <div className="text-center w-full text-3xl font-[600] pt-8 pb-8">Contacts</div>
+            
+                {/* Existing Contact List */}
                 {contacts.length === 0 ? (
                     <div>No content</div>
                 ) : (
-                    <div className="grid gap-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 ">
                         {contacts.map((contact) => (
-                            <ContactItem key={contact.id} contact={contact}  onDelete={handleDelete} />
+                            <ContactItem key={contact.id} contact={contact} onDelete={handleDelete} />
                         ))}
                     </div>
                 )}
-            </div>
+            
         </div>
+
     );
 }
 
