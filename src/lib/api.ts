@@ -7,6 +7,10 @@ export const getContacts = async () => {
     return axios.get(`${BASE_URL}/api/contacts`);
 };
 
+export const getContactById = async (id: number) => {
+    return axios.get(`${BASE_URL}/api/contacts/${id}`);
+};
+
 export const addContact = async (contact: ContactType) => {
     return axios.post(`${BASE_URL}/api/contacts`, {contact});
 };
