@@ -11,6 +11,7 @@ export default async function Page(){
                 <Link href={"/contacts/add"} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 mr-2">Add contacts</Link>
             </div>
             <ContactList />
+            <div id="modal-root"></div>
         </div>
     )
 }

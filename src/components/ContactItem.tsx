@@ -1,6 +1,7 @@
 "use client"
-import React from 'react';
+import React, {useState} from 'react';
 import { useRouter } from 'next/navigation';
+import ConfirmModal from './ConfirmModal';
 
 interface ContactProps {
     contact: {
@@ -15,6 +16,17 @@ interface ContactProps {
 
 const ContactItem: React.FC<ContactProps> = ({ contact, onDelete }) => {
     const router = useRouter()
+    const [isModalOpen, setModalOpen] = useState<boolean>(false)
+    const handleDeleteClick = () => {
+        setModalOpen(true);
+    }
+    const handleCancelDelete = () => {
+        setModalOpen(false);
+    }
+    const handleConfirmDelete = () => {
+        onDelete(contact.id)
+        setModalOpen(false)
+    }
     return (
         <div className="border p-4 rounded shadow">
             <div className="flex justify-between">
@@ -29,9 +41,9 @@ const ContactItem: React.FC<ContactProps> = ({ contact, onDelete }) => {
                 </div>
                 <div className="flex flex-col gap-2 mt-4">
                     <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" onClick={() => { router.push(`/contacts/edit/${contact.id}`) }}>Edit</button>
-                    <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700" onClick={() => onDelete(contact.id)}>Delete</button>
+                    <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700" onClick={handleDeleteClick}>Delete</button>
                 </div>
-
+                <ConfirmModal isOpen = {isModalOpen} onCancel={handleCancelDelete} onConfirm={handleConfirmDelete} />
             </div>
 
             <div className='ml-20'>
