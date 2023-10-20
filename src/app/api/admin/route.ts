@@ -1,11 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getContacts, writeContacts } from '../../../db/helper';
+import { NextResponse } from "next/server";
+import { writeContacts } from '../../../db/helper';
 const contacts = require('../../../db/db_seed.json')
 
-export async function POST(req: NextRequest) {
+export async function POST() {
     try {
-        // const contact = req.body as Partial<ContactType>;
-
         writeContacts(contacts);
         return NextResponse.json({success:true, data: 'Successfully reset the db'}, {status: 200})
     } catch (err) {
