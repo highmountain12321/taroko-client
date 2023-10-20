@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import { useRouter } from 'next/navigation';
 import ConfirmModal from './ConfirmModal';
+import Image from 'next/image';
 
 interface ContactProps {
     contact: {
@@ -31,7 +32,7 @@ const ContactItem: React.FC<ContactProps> = ({ contact, onDelete }) => {
         <div className="border p-4 rounded shadow">
             <div className="flex justify-between">
                 <div className="flex items-center gap-4">
-                    <img
+                    <Image
                         className='w-16 h-16 rounded-full object-cover mb-4'
                         src={"/download.jpg"}
                         alt={`${contact.first_name}`}

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { getContacts, deleteContact } from '../lib/api';
 import ContactItem from './ContactItem';
 import { ContactType } from '@/db/types';
+import Image from 'next/image';
 
 const ContactList: React.FC = () => {
     const [contacts, setContacts] = useState<ContactType[]>([]);
@@ -45,7 +46,7 @@ const ContactList: React.FC = () => {
                             <span>A</span>
                             <span>Z</span>
                         </div>    
-                        <img src='/arrow-down.svg'/>
+                        <Image src='/arrow-down.svg' alt='down-arrow'/>
                     </div>
                 </button>
                 
