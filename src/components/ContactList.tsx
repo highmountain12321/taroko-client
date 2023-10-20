@@ -7,6 +7,7 @@ import { ContactType } from '@/db/types';
 
 const ContactList: React.FC = () => {
     const [contacts, setContacts] = useState<ContactType[]>([]);
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
     useEffect(() => {
         loadContacts();
@@ -22,23 +23,44 @@ const ContactList: React.FC = () => {
         loadContacts();
     };
 
+    const handleSort = () => {
+        const sortedContacts = [...contacts].sort((a, b) => {
+            if (sortOrder === 'asc') {
+                return a.first_name.localeCompare(b.first_name);
+            } else {
+                return b.first_name.localeCompare(a.first_name);
+            }
+        });
+        setContacts(sortedContacts);
+        setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    };
+
     return (
         <div className="bg-white p-4 rounded shadow">
-            <div className="text-center w-full text-3xl font-[600] pt-8 pb-8">Contacts</div>
-            
-                {/* Existing Contact List */}
-                {contacts.length === 0 ? (
-                    <div>No content</div>
-                ) : (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 ">
-                        {contacts.map((contact) => (
-                            <ContactItem key={contact.id} contact={contact} onDelete={handleDelete} />
-                        ))}
+            <div className="flex items-center justify-center mb-4 relative">
+                <div className="text-3xl font-semibold">Contacts</div>
+                <button className="px-4 py-2 rounded absolute right-0 top-0" onClick={handleSort}>
+                    <div className='flex'>
+                        <div className={sortOrder === 'asc' ? 'flex flex-col': 'flex flex-col-reverse'}>
+                            <span>A</span>
+                            <span>Z</span>
+                        </div>    
+                        <img src='/arrow-down.svg'/>
                     </div>
-                )}
-            
-        </div>
+                </button>
+                
+            </div>
 
+            {contacts.length === 0 ? (
+                <div>No content</div>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center">
+                    {contacts.map((contact) => (
+                        <ContactItem key={contact.id} contact={contact} onDelete={handleDelete} />
+                    ))}
+                </div>
+            )}
+        </div>
     );
 }
 
