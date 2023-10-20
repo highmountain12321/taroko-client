@@ -46,7 +46,7 @@ const ContactItem: React.FC<ContactProps> = ({ contact, onDelete }) => {
                 <ConfirmModal isOpen = {isModalOpen} onCancel={handleCancelDelete} onConfirm={handleConfirmDelete} />
             </div>
 
-            <div className='ml-20'>
+            <div className='md:ml-20'>
                 <p className="text-gray-600 mb-2">Job: {contact.job}</p>
                 <p className="mb-2">Description: {contact.description}</p>
             </div>

@@ -30,7 +30,7 @@ const ContactList: React.FC = () => {
                 {contacts.length === 0 ? (
                     <div>No content</div>
                 ) : (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 ">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
                         {contacts.map((contact) => (
                             <ContactItem key={contact.id} contact={contact} onDelete={handleDelete} />
                         ))}

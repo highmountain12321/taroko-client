@@ -14,7 +14,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onCancel, onConfirm
     <div className="fixed inset-0 flex z-50">
       <div className="modal-backdrop"></div>
       <div className="modal-container bg-[#00000030] w-screen h-screen p-16 flex items-center justify-center">
-        <div className="modal-content bg-white w-72 sm:w-96 mx-auto rounded-lg shadow-lg p-4">
+        <div className="modal-content bg-white w-72 md:w-96 mx-auto rounded-lg shadow-lg p-4">
           <p className="text-lg mb-4">Are you sure?</p>
           <div className="flex justify-end">
             <button
