@@ -1,3 +1,4 @@
+import { ContactType } from '@/db/types';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3000';
@@ -7,12 +8,12 @@ export const getContacts = async () => {
     return axios.get(`${BASE_URL}/api/contacts`);
 };
 
-export const addContact = async (contact: any) => {
-    return axios.post(`${BASE_URL}/contacts`, contact);
+export const addContact = async (contact: ContactType) => {
+    return axios.post(`${BASE_URL}/api/contacts`, {contact});
 };
 
 export const updateContact = async (id: number, contact: any) => {
-    return axios.put(`${BASE_URL}/contacts/${id}`, contact);
+    return axios.patch(`${BASE_URL}/api/contacts/${id}`, {info: contact});
 };
 
 export const deleteContact = async (id: number) => {
