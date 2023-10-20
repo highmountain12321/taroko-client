@@ -3,7 +3,8 @@ import axios from 'axios';
 const BASE_URL = 'http://localhost:3000';
 
 export const getContacts = async () => {
-    return axios.get(`${BASE_URL}/contacts`);
+    console.log("dlkfdlf")
+    return axios.get(`${BASE_URL}/api/contacts`);
 };
 
 export const addContact = async (contact: any) => {
@@ -15,5 +16,5 @@ export const updateContact = async (id: number, contact: any) => {
 };
 
 export const deleteContact = async (id: number) => {
-    return axios.delete(`${BASE_URL}/contacts/${id}`);
+    return axios.delete(`${BASE_URL}/api/contacts/${id}`);
 };

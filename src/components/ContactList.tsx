@@ -13,7 +13,8 @@ const ContactList: React.FC = () => {
 
     const loadContacts = async () => {
         const response = await getContacts();
-        setContacts(response.data);
+        console.log("sadala", response)
+        setContacts(response.data.data);
     };
 
     const handleDelete = async (id: number) => {
@@ -22,8 +23,9 @@ const ContactList: React.FC = () => {
     };
 
     return (
+        contacts?.length === 0 ? <div>No content</div> :
         <div>
-            {contacts.length && contacts.map(contact => 
+            {contacts.map(contact => 
                 <ContactItem key={contact.id} contact={contact} onDelete={handleDelete} />
             )}
         </div>
