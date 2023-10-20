@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { getContacts, deleteContact, addContact } from '../lib/api';
+import { getContacts, deleteContact, addContact, updateContact } from '../lib/api';
 import ContactItem from './ContactItem';
 import { ContactType } from '@/db/types';
 
@@ -14,6 +14,14 @@ const ContactList: React.FC = () => {
         job: '',
         description: ''
     });
+    const [editingId, setEditingId] = useState<number|null>(null);
+    const startEditing = (id: number) => {
+        setEditingId(id);
+    };
+    
+    const stopEditing = () => {
+        setEditingId(null);
+    };
     
     useEffect(() => {
         loadContacts();
@@ -28,6 +36,11 @@ const ContactList: React.FC = () => {
         await deleteContact(id);
         loadContacts();
     };
+    const handleEdit =async (id:number, editedContact: ContactType) => {
+        await updateContact(editedContact.id, editedContact);
+        loadContacts();
+        stopEditing();
+    }
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setNewContact(prevState => ({ ...prevState, [name]: value }));
@@ -87,7 +100,7 @@ const ContactList: React.FC = () => {
                 <div>No content</div>
             ) : (
                 contacts.map((contact) => (
-                    <ContactItem key={contact.id} contact={contact} onDelete={handleDelete} />
+                    <ContactItem key={contact.id} contact={contact} isEditing={contact.id == editingId } onEdit={handleEdit} startEditing={startEditing} stopEditing={stopEditing} onDelete={handleDelete} />
                 ))
             )}
         </div>

@@ -1,4 +1,5 @@
 "use client"
+import { ContactType } from '@/db/types';
 import { updateContact } from '@/lib/api';
 import React, {useState} from 'react';
 
@@ -10,11 +11,15 @@ interface ContactProps {
         job: string,
         description: string
     },
+    isEditing: boolean,
+    onEdit: (id: number, editedContact: ContactType) => void,
+    startEditing: (id: number) => void,
+    stopEditing: () => void,
     onDelete: (id: number) => void
 }
 
-const ContactItem: React.FC<ContactProps> = ({ contact, onDelete }) => {
-    const [isEditing, setIsEditing] = useState(false);
+const ContactItem: React.FC<ContactProps> = ({ contact, isEditing, onEdit, startEditing, stopEditing, onDelete }) => {
+    // const [isEditing, setIsEditing] = useState(false);
     const [editedContact, setEditedContact] = useState(contact);
     
 
@@ -26,8 +31,10 @@ const ContactItem: React.FC<ContactProps> = ({ contact, onDelete }) => {
     const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // Call the API to update the contact, assuming you've a function called 'updateContact'
-        await updateContact(editedContact.id, editedContact);
-        setIsEditing(false);
+        await onEdit(editedContact.id, editedContact);
+        
+        // await updateContact(editedContact.id, editedContact);
+        // setIsEditing(false);
     };
     
     return (
@@ -59,14 +66,14 @@ const ContactItem: React.FC<ContactProps> = ({ contact, onDelete }) => {
                         required
                     />
                     <button type="submit">Save</button>
-                    <button onClick={() => setIsEditing(false)}>Cancel</button>
+                    <button onClick={() => stopEditing()}>Cancel</button>
                 </form>
             ) : (
                 <>
                     <h3>{contact.first_name} {contact.last_name}</h3>
                     <p>{contact.job}</p>
                     <p>{contact.description}</p>
-                    <button onClick={() => setIsEditing(true)}>Edit</button>
+                    <button onClick={() => startEditing(contact.id)}>Edit</button>
                     <button onClick={() => onDelete(contact.id)}>Delete</button>
                 </>
             )}
