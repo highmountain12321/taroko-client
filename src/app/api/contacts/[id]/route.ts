@@ -2,8 +2,7 @@ import { getContacts, writeContacts } from '../../../../db/helper';
 import { NextRequest,NextResponse } from "next/server";
 
 export async function GET(req: NextRequest,{params}:{params:{id:string}}) {
-    console.log('id')
-    console.log(params)
+
     const id = params.id
 
     try {
@@ -24,8 +23,6 @@ export async function PATCH(req: NextRequest,{params}:{params:{id:string}}) {
     const { id } = params;
     const body = await req.json();
     const info = body.info
-
-    console.log(info, "PATCH Info")
 
     const contacts = await getContacts();
     const contact = contacts.find(contact => contact.id === Number(id));

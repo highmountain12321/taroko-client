@@ -21,10 +21,8 @@ export async function POST(req: NextRequest) {
         // const contact = req.body as Partial<ContactType>;
 
         const body = await req.json()
-        console.log(body)
         const { contact } = body
 
-        console.log(contact, "-------------------contact _______________________")
         if (!contact.first_name || !contact.last_name || !contact.job || !contact.description) {
             return NextResponse.json({ success: false, data: { error: 'Required fields are missing' } }, { status: 500 });
         }

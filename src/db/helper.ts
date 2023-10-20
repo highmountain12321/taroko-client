@@ -11,7 +11,6 @@ export const getContacts = async ()=> {
     const rawdata = await fs.readFileSync(filePath);
     return JSON.parse(rawdata) as ContactType[];
   } catch (e) {
-    console.log(e);
     return [] as ContactType[]
   }
 };
