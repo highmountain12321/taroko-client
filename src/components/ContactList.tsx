@@ -46,7 +46,7 @@ const ContactList: React.FC = () => {
                             <span>A</span>
                             <span>Z</span>
                         </div>    
-                        <Image src='/arrow-down.svg' alt='down-arrow'/>
+                        <img src='/arrow-down.svg' alt='down-arrow' />
                     </div>
                 </button>
                 
