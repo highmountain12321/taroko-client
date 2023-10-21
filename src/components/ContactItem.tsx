@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import { useRouter } from 'next/navigation';
 import ConfirmModal from './ConfirmModal';
+import Image from 'next/image';
 
 interface ContactProps {
     contact: {
