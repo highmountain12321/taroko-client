@@ -1,4 +1,4 @@
-import { getContacts, writeContacts } from '../../../../db/helper';
+import { getContacts, writeContacts } from '../../../../db/_helper';
 import { NextRequest,NextResponse } from "next/server";
 
 export async function GET(req: NextRequest,{params}:{params:{id:string}}) {

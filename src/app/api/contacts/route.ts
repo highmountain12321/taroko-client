@@ -1,8 +1,8 @@
 import { NextResponse, NextRequest } from "next/server";
-import { getContacts, writeContacts } from '../../../db/helper'
+import { getContacts, writeContacts } from '../../../db/_helper'
 import { ContactType } from "@/db/types";
 import { NextApiRequest, NextApiResponse } from "next";
-// import { getContacts } from "@/app/db/helper";
+// import { getContacts } from "@/app/db/_helper";
 
 export async function GET(
     req: NextRequest
