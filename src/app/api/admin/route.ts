@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { writeContacts } from '../../../db/helper';
+import { writeContacts } from '../../../db/_helper';
 const contacts = require('../../../db/db_seed.json')
 
 export async function POST() {
