@@ -1,7 +1,6 @@
 
 
 import ContactForm from "@/components/ContactForm"
-import { ContactType } from "@/db/types"
 import { getContactById } from "@/lib/api"
 
 export default async function Page({params}: {params: {id: string}}){
